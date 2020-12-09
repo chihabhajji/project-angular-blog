@@ -1,0 +1,11 @@
+<h3 class="float-left">Posts</h3>
+<hr>
+<div class="py-5 p-2">
+    <div class="container m-2">
+        <div class="row pb-2">
+            <div class="col-md-4 pb-3" *ngFor="let post of posts">
+                <app-post-card [post]="post" (removedEventEmitter)="deleteItem($event)"></app-post-card>
+            </div>
+        </div>
+    </div>
+</div>

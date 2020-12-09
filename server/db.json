@@ -1,0 +1,131 @@
+{
+  "users": [
+    {
+      "email": "foo@bar.com",
+      "password": "$2a$10$U5W0VK3gY8UMRP0e93Wy7OGH1BnN8tysWABkaUgjmHnwNivfZUd1G",
+      "firstName": "aze",
+      "lastName": "eaz",
+      "id": 1,
+      "profilePicture": "pic.png"
+    },
+    {
+      "email": "boo@far.com",
+      "password": "$2a$10$U5W0VK3gY8UMRP0e93Wy7OGH1BnN8tysWABkaUgjmHnwNivfZUd1G",
+      "firstName": "aze",
+      "lastName": "eaz",
+      "id": 2,
+      "profilePicture": "pic.png"
+    },
+    {
+      "email": "c@c.c",
+      "password": "$2a$10$i9F0Fz1Al0HUlRkeUNbcT.e12xXNoH3jYtEN/z39FBmG64SF.IFzO",
+      "firstName": "aze",
+      "lastName": "eaz",
+      "id": 3,
+      "profilePicture": "pic.png"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "Title",
+      "body": "body",
+      "createdBy": 1,
+      "pictureLink": "pic.png",
+      "categories": [
+        "Tech",
+        "Social"
+      ],
+      "likedBy": [
+        1,
+        2,
+        null
+      ],
+      "comments": [
+        {
+          "by": 1,
+          "content": "this is a comment",
+          "postedAt": "2012-04-23T18:25:43.511Z"
+        },
+        {
+          "by": 3,
+          "postedAt": "2020-12-08T18:34:02.210Z"
+        },
+        {
+          "by": 3,
+          "content": "azeazeaze",
+          "postedAt": "2020-12-08T18:34:24.814Z"
+        },
+        {
+          "by": 3,
+          "postedAt": "2020-12-08T18:34:37.822Z"
+        },
+        {
+          "by": 3,
+          "postedAt": "2020-12-08T18:34:50.285Z"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "azeazeazazeaze",
+      "body": "azeazeazeazea",
+      "pictureLink": "pic.png",
+      "createdBy": 3,
+      "categories": [
+        "Tech"
+      ],
+      "likedBy": [
+        3,
+        null
+      ],
+      "comments": [
+        {
+          "by": 1,
+          "content": "this is a comment",
+          "postedAt": "2012-04-23T18:25:43.511Z"
+        },
+        {
+          "by": 3,
+          "content": "this is ca comment",
+          "postedAt": "2020-12-09T12:42:33.091Z"
+        },
+        {
+          "by": 3,
+          "content": "second comment",
+          "postedAt": "2020-12-09T12:42:47.110Z"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "azeazeazeazeaze",
+      "body": "azeazeazeazeazeaze",
+      "pictureLink": "pic.png",
+      "createdBy": 3,
+      "categories": [
+        "azeazeazeazeaze"
+      ],
+      "comments": [],
+      "likedBy": [
+        1,
+        null,
+        null
+      ]
+    },
+    {
+      "id": 7,
+      "title": "aaaaaaaaaaaaaaaaaaa",
+      "body": "aaaaaaaaaaaaaaaa",
+      "pictureLink": "pic.png",
+      "createdBy": 3,
+      "categories": [
+        "aaaaaaaaaaaaaaaaaaa"
+      ],
+      "comments": [],
+      "likedBy": [
+        null
+      ]
+    }
+  ]
+}
