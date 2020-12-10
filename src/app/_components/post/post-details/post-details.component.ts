@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import {PostsService} from "../../../_shared/posts.service";
 import {Post, User, Comment} from "../../../_models";
 import {AlertService, UserService} from "../../../_shared";
+
 @Component({
   selector: 'app-post-details',
   templateUrl: './post-details.component.html',
@@ -40,13 +41,12 @@ export class PostDetailsComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     const nId = Number(id);
     this.postsService.delete(nId).subscribe(() => {
-      this.router.navigate(["/posts"]);
+      this.router.navigate(["/posts"]).then(r => console.log(r));
       this.alertService.success('Succesfully deleted '+ this.post.title, false);
     });
   }
 
-    doLike() {
-    console.log('Current user id'+ this.currentUserId);
+    doLike(): void {
       if(this.post.likedBy.includes(this.currentUserId)){
         const index = this.post.likedBy.indexOf(this.currentUserId, 0);
         if (index > -1) {
@@ -58,14 +58,26 @@ export class PostDetailsComponent implements OnInit {
       this.postsService.createOrUpdate(this.post).subscribe(value => this.alertService.success('Succesfully updated'),error => this.alertService.error('Couldnt update'));
       this.isLikedByCurrentUser = !this.isLikedByCurrentUser;
     }
-    doComment(){
-      console.log(this.commentContent);
-      this.post.comments.push(new Comment(this.currentUserId,this.commentContent, new Date()));
-      this.postsService.createOrUpdate(this.post).subscribe(value => this.alertService.success('Succesfully posted comment',false),error => this.alertService.error('Couldnt post comment!',false));
-      this.commentContent = '';
+    doComment(): void{
+    console.log(this.currentUserId);
+      if(this.commentContent == undefined || this.commentContent.length < 6){
+        alert('Comment cannot be blank!');
+      } else {
+        this.post.comments.push(new Comment(this.currentUserId,this.commentContent, new Date()));
+        this.postsService.createOrUpdate(this.post).subscribe(value => this.alertService.success('Succesfully posted comment',false),error => this.alertService.error('Couldnt post comment!',false));
+        this.commentContent = '';
+      }
     }
 
-  alert() {
+  alert(): void {
     alert(this.commentContent);
+  }
+
+  deleteComment($event: Comment): void {
+    let index = this.post.comments.indexOf($event);
+    if (index > -1) {
+      this.post.comments.splice(index, 1);
+    }
+    this.postsService.createOrUpdate(this.post).subscribe(value => this.alertService.success('Deleted post'), error => this.alertService.error('Couldnt delete post!'));
   }
 }

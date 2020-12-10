@@ -10,6 +10,8 @@ import { AuthGuard } from './_helpers';
 import {PostDetailsComponent} from "./_components/post/post-details/post-details.component";
 import {CreatePostComponent} from "./_components/post/create-post/create-post.component";
 import {EditComponent} from "./_components/post/edit/edit.component";
+import {UserProfileComponent} from "./_components/user/user-profile/user-profile.component";
+import {UserProfileUpdateComponent} from "./_components/user/user-profile-update/user-profile-update.component";
 
 const routes: Routes = [
     { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -19,6 +21,8 @@ const routes: Routes = [
     { path: 'posts/new', component: CreatePostComponent },
     { path: 'posts/:id', component: PostDetailsComponent },
     { path: 'posts/edit/:id', component: EditComponent },
+    { path: 'users/profile/:id', component: UserProfileComponent },
+    { path: 'users/profile/update/:id', component: UserProfileUpdateComponent },
 
     { path: '**', redirectTo: '' }
 ];

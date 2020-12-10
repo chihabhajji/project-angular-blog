@@ -1,1 +1,40 @@
-<p>user-profile works!</p>
+<div class="container main main-raised">
+    <div class="profile-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 ml-auto mr-auto">
+                    <div class="profile">
+                        <div class="avatar">
+                            <img src="assets/images/{{user.profilePicture}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                        </div>
+                        <div class="name">
+                            <h3 class="title">{{user.lastName}} {{user.firstName}}</h3>
+                            <a href="#" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-dribbble"></i></a>
+                            <a href="#" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="btn btn-just-icon btn-link btn-pinterest"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="description text-center">
+                <p>{{user.bio}} </p>
+            </div>
+        </div>
+    </div>
+</div>
+<h3 class="float-left mb-5 pb-3">Posts</h3>
+<div class="py-5 p-2">
+    <hr>
+    <div class="container m-2" *ngIf="postsByUser.length > 0; else elseBlock">
+        <div class="row pb-2">
+            <div class="col-md-4 pb-3" *ngFor="let post of postsByUser">
+                <app-post-card [post]="post" (removedEventEmitter)="deleteItem($event)"></app-post-card>
+            </div>
+        </div>
+    </div>
+    <div #elseBlock class="container m-2 text-center text-info">
+        This user doesnt have any posts yet.
+    </div>
+    <hr>
+</div>
+

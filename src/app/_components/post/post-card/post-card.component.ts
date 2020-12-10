@@ -1,8 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
-import {Post} from "../../../_models/post";
-import {User} from "../../../_models";
+import {Post, User} from "../../../_models";
 import {AlertService, AuthenticationService, UserService} from "../../../_shared";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {PostsService} from "../../../_shared/posts.service";
@@ -18,16 +16,16 @@ export class PostCardComponent implements OnInit {
   isLikedByCurrentUser: boolean = false;
   postAuthor: User;
   closeResult = '';
-  currentUser: number;
+  currentUser: number = Number(sessionStorage.getItem('id'));
 
   constructor(private userService: UserService, private authService: AuthenticationService,private modalService: NgbModal, private alertService: AlertService, private postsService: PostsService) {
 
   }
 
   ngOnInit(): void {
+    console.log(this.currentUser);
     this.authService.currentUser.subscribe(value => {
       if(this.post.likedBy.includes(value.id)){
-        console.log('Likes post');
         this.isLikedByCurrentUser = true;
       }
     });
@@ -40,7 +38,7 @@ export class PostCardComponent implements OnInit {
     return this.removedEventEmitter.emit(this.post);
   }
 
-  doLike() {
+  doLike(): void {
     if(this.post.likedBy.includes(this.currentUser)){
       const index = this.post.likedBy.indexOf(this.currentUser, 0);
       if (index > -1) {

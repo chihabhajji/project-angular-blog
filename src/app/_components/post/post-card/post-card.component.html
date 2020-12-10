@@ -1,7 +1,7 @@
 <mat-card class="p-4 bg-transparent h-100 container bg-transparent">
     <mat-card-header>
         <div mat-card-avatar class="header-image w-25 h-25">
-            <img class="avatar-image" src="assets/images/{{postAuthor?.profilePicture}}">
+            <a routerLink="/users/profile/{{post.createdBy}}" ><img class="avatar-image" src="assets/images/{{postAuthor?.profilePicture}}"></a>
         </div>
         <mat-card-title><strong class="title-text">{{post.title}}</strong></mat-card-title>
         <mat-card-subtitle><strong *ngFor="let category of post.categories"> {{category}} </strong></mat-card-subtitle>
@@ -28,8 +28,8 @@
                 <button type="button" class="btn btn-danger" (click)="modal.close('delete')">Yes, I'm sure!</button>
             </div>
         </ng-template>
-        <button class="btn btn-danger col-sm-6" (click)="open(content)"><i class="fa fa-trash" aria-hidden="true" ></i></button>
-        <button *ngIf="postAuthor.id==currentUser" class="btn btn-light col-sm-12" routerLink="/posts/edit/{{post.id}}"><i class="far fa-edit"></i>Edit</button>
+        <button *ngIf="postAuthor?.id==currentUser" class="btn btn-danger col-sm-6" (click)="open(content)"><i class="fa fa-trash" aria-hidden="true" ></i></button>
+        <button *ngIf="postAuthor?.id==currentUser" class="btn btn-light col-sm-12" routerLink="/posts/edit/{{post.id}}"><i class="far fa-edit"></i>Edit</button>
     </mat-card-actions>
 </mat-card>
 

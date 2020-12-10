@@ -26,6 +26,7 @@ import { EditComponent } from './_components/post/edit/edit.component';
 import { UserProfileComponent } from './_components/user/user-profile/user-profile.component';
 
 import { ToastrModule } from 'ngx-toastr';
+import { UserProfileUpdateComponent } from './_components/user/user-profile-update/user-profile-update.component';
 @NgModule({
     imports: [
         BrowserModule,
@@ -51,7 +52,8 @@ import { ToastrModule } from 'ngx-toastr';
         CreatePostComponent,
         PostCommentComponent,
         EditComponent,
-        UserProfileComponent
+        UserProfileComponent,
+        UserProfileUpdateComponent
     ],
     providers: [
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

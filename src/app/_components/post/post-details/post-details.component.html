@@ -6,7 +6,7 @@
 </div>
 <div class="row" *ngIf="!loading">
     <div class="row pl-3 ml-3">
-        <img class="avatar-image" src="assets/images/{{postAuthor?.profilePicture}}" alt="{{post.title}}">
+        <img class="avatar-image" src="assets/images/{{postAuthor.profilePicture}}" alt="{{post.title}}">
     </div>
     <div class="col-lg-8 col-md-10 mx-auto">
         <h1 [textContent]="post.title"></h1>
@@ -22,9 +22,9 @@
 </div>
 <hr>
 <div class="clearfix mx-auto row">
-    <section class="comments" *ngIf="post.comments">
-        <article *ngFor="let comment of post.comments" class="comment">
-            <app-post-comment [comment]="comment"></app-post-comment>
+    <section class="comments" *ngIf="post?.comments">
+        <article *ngFor="let comment of post?.comments" class="comment">
+            <app-post-comment [comment]="comment" (deleteEmitter)="deleteComment($event)"></app-post-comment>
         </article>
     </section>
     <input type="text" class="col-12" placeholder="Leave a comment ..." [(ngModel)]="commentContent"  name="commentContent">
@@ -32,10 +32,8 @@
 </div>
 <!-- Delete Button -->
 <div class="clearfix text-center mx-auto p-4 mt-3">
-    <a (click)="deletePost();" class="btn btn-danger pointer">
-        Delete Post
-        <i class="fa fa-trash" aria-hidden="true" ></i></a>
-    <button class="btn btn-primary col-sm-6" [class.active]="isLikedByCurrentUser" (click)="doLike()"><i class="fa fa-thumbs-up" aria-hidden="true" *ngIf="isLikedByCurrentUser"></i>-<i class="fas fa-heartbeat" *ngIf="!isLikedByCurrentUser" aria-hidden="true"></i>{{post.likedBy?.length}}</button>
+    <a (click)="deletePost();" class="btn btn-danger pointer">Delete Post<i class="fa fa-trash" aria-hidden="true" ></i></a>
+    <button class="btn btn-primary col-sm-6" [class.active]="isLikedByCurrentUser" (click)="doLike()"><i class="fa fa-thumbs-up" aria-hidden="true" *ngIf="isLikedByCurrentUser"></i>-<i class="fas fa-heartbeat" *ngIf="!isLikedByCurrentUser" aria-hidden="true"></i>{{post?.likedBy?.length}}</button>
 </div>
 
 

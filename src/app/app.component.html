@@ -8,14 +8,15 @@
           <h3 class="nav-logo text-center">Blogini</h3>
           <h5 class="text-center nav-logo-subtitle">Your blog!</h5>
           <div class="d-flex box pb-2" *ngIf="currentUser">
-            <img src="assets/images/{{profilePicture}}" alt="Avatar" class="avatar">
-             | {{fullName}}
+            <a routerLink="/users/profile/update/{{currentUser.id}}">
+              <img src="assets/images/{{profilePicture}}" alt="Avatar" class="avatar">| {{fullName}}
+            </a>
           </div>
           <a class="nav-item nav-link" routerLink="/">Home</a>
 
           <ng-template [ngIf]="currentUser" [ngIfElse]="loggedOut">
             <h5 class="sidebar-heading">Posts</h5>
-            <a class="nav-item nav-link" routerLink="/posts">Posts</a>
+            <a class="nav-item nav-link" routerLink="/posts">Discover more</a>
             <a class="nav-item nav-link" routerLink="/posts/new">Create a post</a>
 
 
