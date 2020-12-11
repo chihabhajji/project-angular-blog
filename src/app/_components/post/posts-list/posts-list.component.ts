@@ -71,4 +71,9 @@ export class PostsListComponent implements OnInit {
     });
     this.posts.splice(this.posts.indexOf(post, 0), 1);
   }
+
+  resetFields() {
+    this.categorySearchField = '';
+    this.postTitleSearchField = '';
+  }
 }
