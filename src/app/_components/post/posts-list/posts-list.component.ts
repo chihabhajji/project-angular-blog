@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { User} from "../../../_models";
-import {Subscription} from "rxjs";
+import {merge, Observable, Subject, Subscription} from "rxjs";
 import {Post} from "../../../_models/post";
 import {PostsService} from "../../../_shared/posts.service";
-import {first} from "rxjs/operators";
+import {debounceTime, distinctUntilChanged, filter, first, map} from "rxjs/operators";
 import {AuthenticationService, UserService} from "../../../_shared";
+import {NgbTypeahead} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-posts-list',
@@ -12,11 +13,16 @@ import {AuthenticationService, UserService} from "../../../_shared";
   styleUrls: ['./posts-list.component.scss']
 })
 export class PostsListComponent implements OnInit {
-
+  @ViewChild('instance', {static: true}) instance: NgbTypeahead;
+  focus$ = new Subject<string>();
+  click$ = new Subject<string>();
+  categories: string[] = [];
   currentUser: User;
   currentUserSubscription: Subscription;
   accounts: Account[] = [];
   posts: Post[] = [];
+  postTitleSearchField: string = '';
+  categorySearchField: string = '';
   constructor(
       private authenticationService: AuthenticationService,
       private userService: UserService,
@@ -25,6 +31,17 @@ export class PostsListComponent implements OnInit {
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
     });
+  }
+
+  search = (text$: Observable<string>) => {
+    const debouncedText$ = text$.pipe(debounceTime(200), distinctUntilChanged());
+    const clicksWithClosedPopup$ = this.click$.pipe(filter(() => !this.instance.isPopupOpen()));
+    const inputFocus$ = this.focus$;
+
+    return merge(debouncedText$, inputFocus$, clicksWithClosedPopup$).pipe(
+        map(term => (term === '' ? this.categories
+            : this.categories.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1)).slice(0, 10))
+    );
   }
 
   ngOnInit() {
@@ -38,6 +55,13 @@ export class PostsListComponent implements OnInit {
   private loadPosts() {
     this.postsService.findAll().subscribe((post: Post[]) => {
       this.posts = post;
+      for (let post of this.posts){
+        for(let cat of post.categories){
+          if(this.categories.indexOf(cat) === -1) {
+            this.categories.push(cat);
+          }
+        }
+      }
     });
   }
 

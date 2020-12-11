@@ -1,5 +1,5 @@
 
-<header class="bg-primary text-white">
+<header class="gradient">
     <div class="container text-center">
         <h1>Welcome to Blogini</h1>
         <p class="lead">Your blog</p>
@@ -7,17 +7,18 @@
 </header>
 
 <section id="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <h2>About this page</h2>
-                <p class="lead">Lorem epsom .............................:</p>
-                <ul>
-                    <li>Create & share your posts!</li>
-                    <li><strong>What are you waiting for           | </strong><a class="btn btn-primary" routerLink="/posts/new"><i>express yourself!</i></a></li>
-                    <li><a class="btn btn-primary" routerLink="/posts">Check out posts!</a></li>
-                </ul>
+    <h3 class="float-left mb-5 pb-3">Posts by people you follow :</h3>
+    <div class="py-5 p-2">
+        <hr>
+        <div class="container m-2">
+            <div class="row pb-2">
+                <div class="col-md-4 pb-3" *ngFor="let post of postsByFollowees">
+                    <app-post-card [post]="post"></app-post-card>
+                </div>
             </div>
         </div>
+        <hr>
     </div>
 </section>
+
+

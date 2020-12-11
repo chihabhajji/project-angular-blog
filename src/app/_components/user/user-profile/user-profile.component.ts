@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {UserService} from "../../../_shared";
+import {AlertService, AuthenticationService, UserService} from "../../../_shared";
 import {Post, User} from "../../../_models";
 import {PostsService} from "../../../_shared/posts.service";
+import {valueReferenceToExpression} from "@angular/compiler-cli/src/ngtsc/annotations/src/util";
 
 @Component({
   selector: 'app-user-profile',
@@ -12,19 +13,24 @@ import {PostsService} from "../../../_shared/posts.service";
 export class UserProfileComponent implements OnInit {
   user: User;
   postsByUser: Post[]=[];
-  currentUserFollows: boolean;
-  constructor(private route: ActivatedRoute, private router: Router, private usersService: UserService, private postsService: PostsService) { }
+  currentUserFollows: boolean = false;
+  currentUser: User;
+  routeId: number;
+  constructor(private alertService: AlertService,private authService: AuthenticationService, private route: ActivatedRoute, private router: Router, private usersService: UserService, private postsService: PostsService) { }
 
   ngOnInit() {
-    const userId = +this.route.snapshot.paramMap.get('id');
-    if(userId == Number(sessionStorage.getItem('id'))){
-      this.router.navigateByUrl('/users/profile/update/'+userId);
+    this.authService.currentUser.subscribe(value => this.currentUser = value);
+    this.routeId = Number(this.route.snapshot.paramMap.get('id'));
+    if(this.routeId == this.currentUser.id){
+      this.router.navigateByUrl('/users/profile/update/'+this.currentUser.id);
     }
-    this.usersService.getById(userId).subscribe(value => {
+    this.usersService.getById(this.routeId).subscribe(value => {
       this.user = value;
+      if(value.followers.includes(this.currentUser.id))
+        this.currentUserFollows = true;
       this.postsService.findAll().subscribe(value1 => {
         for (let post of value1){
-          if(post.createdBy === userId){
+          if(post.createdBy === this.routeId){
             this.postsByUser.push(post);
           }
         }
@@ -37,5 +43,22 @@ export class UserProfileComponent implements OnInit {
       console.log(value + 'DELETED!');
     });
     this.postsByUser.splice(this.postsByUser.indexOf($event, 0), 1);
+  }
+
+  subOrUnsub() {
+    if(this.currentUserFollows){
+      this.user.followers.splice(this.currentUser.id,1);
+      this.currentUser.follows.splice(this.user.id,1);
+    } else {
+      this.user.followers.push(this.currentUser.id);
+      this.currentUser.follows.push(this.user.id);
+    }
+    this.usersService.putOrPost(this.currentUser).subscribe(value => console.log(value));
+    this.usersService.putOrPost(this.user).subscribe(valueReferenceToExpression => {
+      this.alertService.success('Succesfully ' + this.currentUserFollows ? 'followed' : 'unfollowed'+ ' user');
+    }, error => {
+      this.alertService.error('Couldnt follow / unfollow user!', false);
+    });
+    this.currentUserFollows = !this.currentUserFollows;
   }
 }

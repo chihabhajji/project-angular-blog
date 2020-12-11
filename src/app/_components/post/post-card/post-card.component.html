@@ -1,19 +1,19 @@
-<mat-card class="p-4 bg-transparent h-100 container bg-transparent">
-    <mat-card-header>
+<mat-card class="p-4 card bg-transparent h-100 container bg-transparent">
+    <mat-card-header class="card-title">
         <div mat-card-avatar class="header-image w-25 h-25">
             <a routerLink="/users/profile/{{post.createdBy}}" ><img class="avatar-image" src="assets/images/{{postAuthor?.profilePicture}}"></a>
         </div>
         <mat-card-title><strong class="title-text">{{post.title}}</strong></mat-card-title>
         <mat-card-subtitle><strong *ngFor="let category of post.categories"> {{category}} </strong></mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="assets/images/{{post.pictureLink}}" alt="{{post.title}}">
-    <mat-card-content>
-        <a routerLink="/posts/{{post.id}}">
-            <p>
-                {{post.body}}
-            </p>
-        </a>
-    </mat-card-content>
+    <a routerLink="/posts/{{post.id}}">
+        <img mat-card-image src="assets/images/{{post.pictureLink}}" alt="{{post.title}}">
+        <mat-card-content>
+                <p>
+                    {{post.body}}
+                </p>
+        </mat-card-content>
+    </a>
     <mat-card-actions class="row sticky bottom-actions">
         <button class="btn col-sm-6" [class.active]="isLikedByCurrentUser" (click)="doLike()" [ngClass]="isLikedByCurrentUser ? 'btn-primary' : 'btn-light'"><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{post.likedBy?.length}}</button>
 
@@ -32,4 +32,5 @@
         <button *ngIf="postAuthor?.id==currentUser" class="btn btn-light col-sm-12" routerLink="/posts/edit/{{post.id}}"><i class="far fa-edit"></i>Edit</button>
     </mat-card-actions>
 </mat-card>
+
 

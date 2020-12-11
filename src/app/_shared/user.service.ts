@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { User } from '../_models';
+import {Post, User} from '../_models';
 import {Observable} from "rxjs";
 
 @Injectable({ providedIn: 'root' })
@@ -23,5 +23,14 @@ export class UserService {
 
     getById(id: number): Observable<User>{
         return this.http.get<User>(this.API_LINK + `/users/${id}`);
+    }
+
+    putOrPost(user: User): Observable<User> {
+        if (user.id != null) {
+            return this.http.put<User>(`${this.API_LINK}/users/`+user.id, user);
+        }
+        else {
+            return this.http.post<User>(`${this.API_LINK}/users`, user);
+        }
     }
 }

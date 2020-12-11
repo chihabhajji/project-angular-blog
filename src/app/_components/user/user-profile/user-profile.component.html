@@ -1,38 +1,30 @@
-<div class="container main main-raised">
-    <div class="profile-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 ml-auto mr-auto">
-                    <div class="profile">
-                        <div class="avatar">
-                            <img src="assets/images/{{user.profilePicture}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
-                        </div>
-                        <div class="name">
-                            <h3 class="title">{{user.lastName}} {{user.firstName}}</h3>
-                            <a href="#" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-dribbble"></i></a>
-                            <a href="#" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="btn btn-just-icon btn-link btn-pinterest"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                    </div>
+<div class="container mt-2 d-flex justify-content-center col-10">
+    <div class="card p-3">
+        <div class="d-flex align-items-center">
+            <div class="image"> <img src="assets/images/{{user?.profilePicture}}" class="rounded" width="155"> </div>
+            <div class="ml-3 w-100">
+                <h4 class="mb-0 mt-0">{{user?.firstName | titlecase }} {{user?.lastName | titlecase }}</h4> <span>{{user?.email}}</span>
+                <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                    <div class="d-flex flex-column"> <span class="articles">Articles</span> <span class="number1">{{postsByUser?.length}}</span> </div>
+                    <div class="d-flex flex-column"> <span class="followers">Follows</span> <span class="number2">{{user?.follows.length}}</span> </div>
+                    <div class="d-flex flex-column"> <span class="followers">Followers</span> <span class="number2">{{user?.followers.length}}</span> </div>
                 </div>
-            </div>
-            <div class="description text-center">
-                <p>{{user.bio}} </p>
+                <div class="button mt-2 d-flex flex-row align-items-center"><button *ngIf="currentUserFollows" class="btn btn-sm btn-primary w-100 ml-2" (click)="subOrUnsub()">Follow</button> <button *ngIf="!currentUserFollows" class="btn btn-sm btn-light w-100 ml-2" (click)="subOrUnsub()">Unfollow</button> </div>
             </div>
         </div>
     </div>
 </div>
-<h3 class="float-left mb-5 pb-3">Posts</h3>
+<h3 class="float-left mb-5 pb-3">Posts </h3>
 <div class="py-5 p-2">
     <hr>
-    <div class="container m-2" *ngIf="postsByUser.length > 0; else elseBlock">
+    <div class="container m-2" *ngIf="postsByUser?.length > 0;">
         <div class="row pb-2">
             <div class="col-md-4 pb-3" *ngFor="let post of postsByUser">
                 <app-post-card [post]="post" (removedEventEmitter)="deleteItem($event)"></app-post-card>
             </div>
         </div>
     </div>
-    <div #elseBlock class="container m-2 text-center text-info">
+    <div *ngIf="postsByUser?.length == 0;" class="container m-2 text-center text-info">
         This user doesnt have any posts yet.
     </div>
     <hr>
