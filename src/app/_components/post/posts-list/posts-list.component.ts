@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { User} from "../../../_models";
 import {merge, Observable, Subject, Subscription} from "rxjs";
-import {Post} from "../../../_models/post";
+import {Post} from "../../../_models";
 import {PostsService} from "../../../_shared/posts.service";
-import {debounceTime, distinctUntilChanged, filter, first, map} from "rxjs/operators";
+import {debounceTime, distinctUntilChanged, filter, map} from "rxjs/operators";
 import {AuthenticationService, UserService} from "../../../_shared";
 import {NgbTypeahead} from "@ng-bootstrap/ng-bootstrap";
 
@@ -19,7 +19,6 @@ export class PostsListComponent implements OnInit {
   categories: string[] = [];
   currentUser: User;
   currentUserSubscription: Subscription;
-  accounts: Account[] = [];
   posts: Post[] = [];
   postTitleSearchField: string = '';
   categorySearchField: string = '';
