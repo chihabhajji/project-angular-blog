@@ -6,7 +6,7 @@
       "firstName": "aze",
       "lastName": "eaz",
       "id": 1,
-      "profilePicture": "pic.png",
+      "profilePicture": "user1.png",
       "follows": [
         2
       ],
@@ -17,12 +17,12 @@
       ]
     },
     {
-      "email": "boo@far.com",
-      "password": "$2a$10$U5W0VK3gY8UMRP0e93Wy7OGH1BnN8tysWABkaUgjmHnwNivfZUd1G",
-      "firstName": "aze",
-      "lastName": "eaz",
+      "email": "salim.benyahya@esprit.tn",
+      "password": "$2a$10$V3CNkRo.AWax4phg9FmXPOo2yCzlIIWcjgeLSVKR7Hq/zKxHUYss2",
+      "firstName": "Salim",
+      "lastName": "Ben yahya",
       "id": 2,
-      "profilePicture": "pic.png",
+      "profilePicture": "user2.png",
       "follows": [
         3
       ],
@@ -32,12 +32,30 @@
       ]
     },
     {
-      "email": "c@c.c",
+      "email": "chihab.hajji@esprit.tn",
       "password": "$2a$10$i9F0Fz1Al0HUlRkeUNbcT.e12xXNoH3jYtEN/z39FBmG64SF.IFzO",
-      "firstName": "aze",
-      "lastName": "eaz",
+      "firstName": "Chihab",
+      "lastName": "Hajji",
       "id": 3,
-      "profilePicture": "pic.png",
+      "profilePicture": "user3.png",
+      "follows": [
+        1,
+        2,
+        4
+      ],
+      "followers": [
+        1,
+        2,
+        4
+      ]
+    },
+    {
+      "email": "fatma@esprit.tn",
+      "password": "$2a$10$i9F0Fz1Al0HUlRkeUNbcT.e12xXNoH3jYtEN/z39FBmG64SF.IFzO",
+      "firstName": "Fatma",
+      "lastName": "Ben Moulehem",
+      "id": 4,
+      "profilePicture": "user4.png",
       "follows": [
         1,
         2
@@ -46,50 +64,29 @@
         1,
         2
       ]
+    },
+    {
+      "email": "user@user.user",
+      "password": "$2a$10$Qyp9cQXVXfZ.lNhaonPQUOf7q4Pih3I/oB/5pxb11nNLm3xVUVlI.",
+      "firstName": "user",
+      "lastName": "user",
+      "id": 5
     }
   ],
   "posts": [
     {
-      "id": 1,
-      "title": "Title",
-      "body": "body",
-      "createdBy": 1,
-      "pictureLink": "pic.png",
-      "categories": [
-        "Tech",
-        "Social"
-      ],
-      "likedBy": [
-        1,
-        2,
-        null,
-        3
-      ],
-      "comments": [
-        {
-          "by": 1,
-          "content": "this is a comment",
-          "postedAt": "2012-04-23T18:25:43.511Z"
-        },
-        {
-          "by": 3,
-          "content": "azeazeaze",
-          "postedAt": "2020-12-10T15:42:01.449Z"
-        }
-      ]
-    },
-    {
       "id": 2,
-      "title": "azeazeazazeaze",
-      "body": "azeazeazeazea",
-      "pictureLink": "pic.png",
+      "title": "Thailand vlog",
+      "body": "During my latest visit to Thailand ...",
+      "pictureLink": "post2.jpg",
       "createdBy": 3,
       "categories": [
-        "Tech"
+        "Travel",
+        "Vlog",
+        "Tourism"
       ],
       "likedBy": [
-        3,
-        null
+        3
       ],
       "comments": [
         {
@@ -101,22 +98,17 @@
           "by": 3,
           "content": "this is ca comment",
           "postedAt": "2020-12-09T12:42:33.091Z"
-        },
-        {
-          "by": 3,
-          "content": "second comment",
-          "postedAt": "2020-12-09T12:42:47.110Z"
         }
       ]
     },
     {
       "id": 6,
-      "title": "azeazeazeazeaze",
-      "body": "azeazeazeazeazeaze",
-      "pictureLink": "pic.png",
+      "title": "Post example",
+      "body": "Lorem epsom dra chnya dra chnya",
+      "pictureLink": "post3.jpg",
       "createdBy": 3,
       "categories": [
-        "azeazeazeazeaze"
+        "Lorem"
       ],
       "comments": [
         {
@@ -138,21 +130,6 @@
       ]
     },
     {
-      "id": 7,
-      "title": "aaaaaaaaaaaaaaaaaaa",
-      "body": "aaaaaaaaaaaaaaaa",
-      "pictureLink": "pic.png",
-      "createdBy": 3,
-      "categories": [
-        "aaaaaaaaaaaaaaaaaaa"
-      ],
-      "comments": [],
-      "likedBy": [
-        null,
-        3
-      ]
-    },
-    {
       "id": 8,
       "title": "azeazeazeaze",
       "body": "azeazeazeazeaz",
@@ -165,6 +142,19 @@
       "likedBy": [
         3
       ]
+    },
+    {
+      "id": 9,
+      "title": "new post",
+      "body": "this is a new post",
+      "pictureLink": "pic.png",
+      "createdBy": 5,
+      "categories": [
+        "",
+        ""
+      ],
+      "comments": [],
+      "likedBy": []
     }
   ]
 }

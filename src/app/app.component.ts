@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
-import {AuthenticationService, UserService} from './_shared';
-import {User} from './_models';
+import {AuthenticationService, UserService} from './shared';
+import {User} from './model';
 import {ToastrService} from "ngx-toastr";
-import {AlertComponent} from "./_components";
-import {NotificationType} from "./_models/NotificationMessage";
+import {AlertComponent} from "./components";
+import {NotificationType} from "./model/NotificationMessage";
 
 @Component({ 
   selector: 'app',
