@@ -9,14 +9,13 @@
             <textarea formControlName="body"></textarea>
         </label>
         <div formArrayName="categories" class="col-12">
-            <h3>Categories :</h3> <button (click)="addCategory()">Add Category</button>
-
             <div *ngFor="let category of categories.controls; let i=index">
                 <label>
                     Category:
-                    <input type="text" [formControlName]="i">
+                    <input type="text" [formControlName]="i" [value]="category">
                 </label>
             </div>
+            <h3>Categories :</h3> <button (click)="addCategory()">Add Category</button>
         </div>
     </div>
 

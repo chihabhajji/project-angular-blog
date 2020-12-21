@@ -4,6 +4,7 @@ import {Post} from "../../../model/post";
 import {Router} from "@angular/router";
 import {AlertService} from "../../../shared";
 import {PostsService} from "../../../shared/posts.service";
+import {isEmpty} from "rxjs/operators";
 
 @Component({
   selector: 'app-create-post',
@@ -28,6 +29,8 @@ export class CreatePostComponent implements OnInit {
   }
 
   onSubmit() {
+    if(this.createForm.value.title.length<10 )
+      alert('Wrong inputs');
     this.post.title = this.createForm.value.title;
     this.post.body = this.createForm.value.body;
     this.post.categories = this.createForm.value.categories;

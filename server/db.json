@@ -145,8 +145,21 @@
     },
     {
       "id": 9,
-      "title": "new post",
-      "body": "this is a new post",
+      "title": "",
+      "body": "azeazeaze",
+      "pictureLink": "pic.png",
+      "createdBy": 5,
+      "categories": [
+        "azeazeazeazeaze",
+        ""
+      ],
+      "comments": [],
+      "likedBy": []
+    },
+    {
+      "id": 10,
+      "title": "",
+      "body": "",
       "pictureLink": "pic.png",
       "createdBy": 5,
       "categories": [
